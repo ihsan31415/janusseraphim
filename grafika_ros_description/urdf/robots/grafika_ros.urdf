@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<robot name="my_robot">
+
+  <material name="silver">
+    <color rgba="0.8 0.8 0.8 1"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.1 0.3 0.8 1"/>
+  </material>
+
+
+<link name="base_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/base_link.dae"/>
+      </geometry>
+      </visual>
+  </link>
+
+  <link name="rotator_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/rotator_link.dae"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+
+  <link name="shoulder_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/shoulder_link.dae"/>
+      </geometry>
+
+      <material name="blue"/>
+    </visual>
+  </link>
+
+
+  <link name="elbow_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/elbow_link.dae"/>
+      </geometry>
+
+      <material name="silver"/>
+    </visual>
+  </link>
+
+  <link name="elbow_servo_gear_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/elbow_servo_gear_link.dae"/>
+      </geometry>
+
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="elbow_gear_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/elbow_gear_link.dae"/>
+      </geometry>
+
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="wrist_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/wrist_link.dae"/>
+      </geometry>
+
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="ee_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/ee_link.dae"/>
+      </geometry>
+
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="syringe_slider_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/syringe_slider_link.dae"/>
+      </geometry>
+
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <link name="ee_gear_link">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://grafika_ros_description/meshes/grafika_100/visual/ee_gear_link.dae"/>
+      </geometry>
+
+      <material name="blue"/>
+    </visual>
+  </link>
+
+
+
+
+
+  <joint name="base_to_rotator_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="rotator_link"/>
+    <origin xyz="0 0 0.04174" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="2"/>
+  </joint>
+
+  <joint name="rotator_to_shoulder_joint" type="revolute">
+    <parent link="rotator_link"/>
+    <child link="shoulder_link"/>
+    <origin xyz="-0.02639 0 0.03282" rpy="0 0 1.5708"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="0" upper="3.14" effort="10" velocity="2"/>
+  </joint>
+
+  <joint name="shoulder_to_elbow_joint" type="revolute">
+    <parent link="shoulder_link"/>
+    <child link="elbow_link"/>
+    <origin xyz=" -0.09031 0.00367 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.14" upper="0" effort="8" velocity="2"/>
+  </joint>
+
+  <joint name="elbow_to_wrist_joint" type="revolute">
+    <parent link="elbow_link"/>
+    <child link="wrist_link"/>
+    <origin xyz="-0.08258 -0.0745 0.03577" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5" velocity="2"/>
+  </joint>
+
+  <joint name="elbow_to_elbow_servo_gear_joint" type="revolute">
+    <parent link="elbow_link"/>
+    <child link="elbow_servo_gear_link"/>
+    <origin xyz="-0.04568 0.00241 0.03577" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5" velocity="2"/>
+  </joint>  
+
+  <joint name="elbow_to_elbow_gear_joint" type="revolute">
+    <parent link="elbow_link"/>
+    <child link="elbow_gear_link"/>
+    <origin xyz="-0.064 -0.00104 0.035" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5" velocity="2"/>
+  </joint>  
+
+  <joint name="wrist_to_ee_joint" type="revolute">
+    <parent link="wrist_link"/>
+    <child link="ee_link"/>
+    <origin xyz="-0.02879 0.0543 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5" velocity="2"/>
+  </joint>
+
+  <joint name="syringe_slider_joint" type="prismatic">
+    <!-- 
+      1. Changed 'type' from 'slider' to 'prismatic', which is the standard 
+         URDF term for linear (sliding) motion.
+    -->
+    <parent link="ee_link"/>
+    <child link="syringe_slider_link"/>
+    <origin xyz="-0.01540 -0.01705 -0.02829" rpy="0 0 0"/>
+    <!-- 
+      2. Changed 'axis' to "0 0 1" to define linear motion along the Z-axis.
+         (1 0 0 is X-axis, 0 1 0 is Y-axis).
+    -->
+    <axis xyz="0 0 1"/>
+    <limit
+      lower="-0.05" 
+      upper="0.05" 
+      effort="5"
+      velocity="2"/>
+    <dynamics damping="0.5" friction="0.1"/>
+  </joint>
+
+  <joint name="ee_gear_joint" type="revolute">
+    <parent link="ee_link"/>
+    <child link="ee_gear_link"/>
+    <origin xyz="-0.03735 -0.00908 0.00943" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="5" velocity="2"/>
+  </joint>
+
+</robot>
