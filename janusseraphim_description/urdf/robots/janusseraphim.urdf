@@ -13,7 +13,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/base_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/base_link.dae"/>
       </geometry>
       </visual>
   </link>
@@ -22,7 +22,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/rotator_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/rotator_link.dae"/>
       </geometry>
       <material name="silver"/>
     </visual>
@@ -32,7 +32,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/shoulder_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/shoulder_link.dae"/>
       </geometry>
 
       <material name="blue"/>
@@ -44,7 +44,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/elbow_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/elbow_link.dae"/>
       </geometry>
 
       <material name="silver"/>
@@ -55,7 +55,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/elbow_servo_gear_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/elbow_servo_gear_link.dae"/>
       </geometry>
 
       <material name="blue"/>
@@ -66,7 +66,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/elbow_gear_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/elbow_gear_link.dae"/>
       </geometry>
 
       <material name="blue"/>
@@ -77,7 +77,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/wrist_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/wrist_link.dae"/>
       </geometry>
 
       <material name="blue"/>
@@ -88,7 +88,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/ee_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/ee_link.dae"/>
       </geometry>
 
       <material name="blue"/>
@@ -99,7 +99,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/syringe_slider_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/syringe_slider_link.dae"/>
       </geometry>
 
       <material name="blue"/>
@@ -110,7 +110,7 @@
     <visual>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://janusseraphim_description/meshes/grafika_100/visual/ee_gear_link.dae"/>
+        <mesh filename="package://janusseraphim_description/meshes/janusseraphim_100/visual/ee_gear_link.dae"/>
       </geometry>
 
       <material name="blue"/>

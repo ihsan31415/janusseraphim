@@ -15,6 +15,13 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(
+  PROGRAMS
+    scripts/interactive_controller.py
+    scripts/ik_solver_node.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 #  
 # uncomment the following section in order to fill in
 # further dependencies manually.

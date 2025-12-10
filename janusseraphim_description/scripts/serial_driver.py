@@ -10,6 +10,10 @@ class SerialJointDriver(Node):
     def __init__(self):
         super().__init__('serial_joint_driver')
         
+        self.publish_rate = self.declare_parameter('publish_rate_hz', 60.0).value
+        self.publish_rate = max(1.0, float(self.publish_rate))
+        self.latest_values = None
+
         self.use_dummy = False
         # Simple argument parsing
         if '--use-dummy' in sys.argv:
@@ -34,7 +38,7 @@ class SerialJointDriver(Node):
                 self.ser = None
 
         self.publisher_ = self.create_publisher(JointState, 'joint_states', 10)
-        self.timer = self.create_timer(0.05, self.timer_callback) # 20Hz
+        self.timer = self.create_timer(1.0 / self.publish_rate, self.timer_callback)
 
         # Define the joints you want to control
         self.joint_names = [
@@ -56,9 +60,6 @@ class SerialJointDriver(Node):
         values = []
         if self.use_dummy:
             t = self.get_clock().now().nanoseconds / 1e9
-            # Generate dummy values 0-1023
-            v = 512 + 400 * math.sin(t)
-            # Use slightly different phases for variety
             values = [
                 512 + 400 * math.sin(t),
                 512 + 400 * math.sin(t + 1),
@@ -67,12 +68,11 @@ class SerialJointDriver(Node):
                 512 + 400 * math.sin(t + 4),
                 512 + 400 * math.sin(t + 5)
             ]
-        elif self.ser is not None and self.ser.in_waiting > 0:
-            try:
-                line = self.ser.readline().decode('utf-8').strip()
-                values = line.split(',')
-            except Exception:
-                pass
+        else:
+            serial_values = self._drain_serial_buffer()
+            if serial_values:
+                self.latest_values = serial_values
+            values = self.latest_values or []
 
         if len(values) >= 6:
             try:
@@ -104,6 +104,22 @@ class SerialJointDriver(Node):
                 pass
             except Exception as e:
                 self.get_logger().warn(f"Serial read error: {e}")
+
+    def _drain_serial_buffer(self):
+        if self.ser is None:
+            return None
+        latest = None
+        try:
+            while self.ser.in_waiting > 0:
+                line = self.ser.readline().decode('utf-8', errors='ignore').strip()
+                if not line:
+                    continue
+                parts = line.split(',')
+                if len(parts) >= 6:
+                    latest = parts
+        except Exception as exc:
+            self.get_logger().warn(f"Serial drain error: {exc}")
+        return latest
 
 def main(args=None):
     rclpy.init(args=args)
