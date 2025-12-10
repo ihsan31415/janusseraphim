@@ -9,17 +9,17 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     # 1. Get the path to your package
-    pkg_name = 'grafika_ros_description'
+    pkg_name = 'janusseraphim_description'
     pkg_share = get_package_share_directory(pkg_name)
     
     # 2. Define the path to your main URDF file
     # Ensure this path is correct relative to the package root
-    default_model_path = os.path.join(pkg_share, 'urdf/robots', 'grafika_ros.urdf')
+    default_model_path = os.path.join(pkg_share, 'urdf/robots', 'janusseraphim.urdf')
     
-    # Path to the serial script (Assuming it's in src/grafika_ros/grafika_ros_description/scripts/)
+    # Path to the serial script (Assuming it's in src/janusseraphim/janusseraphim_description/scripts/)
     # We construct this path relative to the package share if installed, or source if local.
     # For simplicity in this workspace, we point to the source script location:
-    script_path = '/home/syntropy/ros2_ws/src/grafika_ros/grafika_ros_description/scripts/serial_driver.py'
+    script_path = '/home/syntropy/ros2_ws/src/janusseraphim/janusseraphim_description/scripts/serial_driver.py'
 
     # --- Launch Arguments ---
     model_arg = DeclareLaunchArgument(
